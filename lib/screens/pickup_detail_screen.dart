@@ -18,7 +18,7 @@ class _PickupDetailScreenState extends State<PickupDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: MediaQuery.of(context).viewInsets, // Untuk keyboard overlap
+      padding: MediaQuery.of(context).viewInsets, 
       child: Container(
         padding: const EdgeInsets.all(16.0),
         child: Column(
