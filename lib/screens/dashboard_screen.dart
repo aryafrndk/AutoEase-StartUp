@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../widgets/category_item.dart';
 import '../../widgets/custom_bottom_navigation_bar.dart';
+import '../screens/Bookagent_screen.dart'; 
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  int currentIndex = 0; 
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               borderRadius: BorderRadius.circular(20),
             ),
             child: IconButton(
-              icon: const Icon(Icons.notifications_outlined, color: Colors.black),
+              icon:
+                  const Icon(Icons.notifications_outlined, color: Colors.black),
               onPressed: () {
                 // Action for the notification button
               },
@@ -123,36 +125,47 @@ class _DashboardScreenState extends State<DashboardScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    width: 180,
-                    height: 240,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            'assets/images/agent.png',
-                            width: 160,
-                            height: 160,
-                            fit: BoxFit.cover,
+                  GestureDetector(
+                    onTap: () {
+                      // Navigasi ke halaman BookAgentScreen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BookAgentScreen(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 180,
+                      height: 240,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              'assets/images/agent.png',
+                              width: 160,
+                              height: 160,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 12),
-                        const Text(
-                          'Book Your Agent',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                          const SizedBox(height: 12),
+                          const Text(
+                            'Book Your Agent',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 4),
-                        const Text(
-                          '1h 30 min',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ],
+                          const SizedBox(height: 4),
+                          const Text(
+                            '1h 30 min',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Container(
@@ -197,7 +210,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         currentIndex: currentIndex,
         onTap: (index) {
           setState(() {
-            currentIndex = index;  // Update the selected index
+            currentIndex = index; // Update the selected index
           });
         },
       ),
