@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_bottom_navigation_bar.dart';
+import '../screens/pickup_detail_screen.dart';
 
 class LocationSelectionScreen extends StatefulWidget {
   const LocationSelectionScreen({super.key});
@@ -8,8 +9,8 @@ class LocationSelectionScreen extends StatefulWidget {
   _LocationSelectionScreen createState() => _LocationSelectionScreen();
 }
 
-class _LocationSelectionScreen extends State<LocationSelectionScreen>{
-  int currentIndex = 0; 
+class _LocationSelectionScreen extends State<LocationSelectionScreen> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,7 +125,7 @@ class _LocationSelectionScreen extends State<LocationSelectionScreen>{
         currentIndex: currentIndex,
         onTap: (index) {
           setState(() {
-            currentIndex = index;  // Update the selected index
+            currentIndex = index; // Update the selected index
           });
         },
       ),
@@ -161,7 +162,22 @@ class _LocationTile extends StatelessWidget {
         ),
         subtitle: Text(address),
         onTap: () {
-          // Handle tap on location
+          showModalBottomSheet(
+            context: context,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            isScrollControlled: true,
+            builder: (context) {
+              return PickupDetailScreen(
+                title: title,
+                address: address,
+              );
+            },
+          );
         },
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../widgets/custom_bottom_navigation_bar.dart';  // Import CustomBottomNavigationBar
+import '../widgets/custom_bottom_navigation_bar.dart';
+import '../screens/location_selection_screen.dart';
 
 class ServiceScreen extends StatefulWidget {
   const ServiceScreen({super.key});
@@ -11,7 +12,7 @@ class ServiceScreen extends StatefulWidget {
 class _ServiceScreenState extends State<ServiceScreen> {
   // Track the selected service
   String? selectedService;
-  int currentIndex = 0;  // Track the current index for the BottomNavigationBar
+  int currentIndex = 0; // Track the current index for the BottomNavigationBar
 
   @override
   Widget build(BuildContext context) {
@@ -91,12 +92,28 @@ class _ServiceScreenState extends State<ServiceScreen> {
               ),
             ),
             const SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               width: double.infinity,
               margin: const EdgeInsets.only(bottom: 20),
               child: ElevatedButton(
                 onPressed: () {
-                  // Continue button action
+                  // Check if a service is selected
+                  if (selectedService != null) {
+                    // Navigate to LocationSelectionScreen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LocationSelectionScreen(),
+                      ),
+                    );
+                  } else {
+                    // Show an alert if no service is selected
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text('Please select a service first')),
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFE9EDF2),
@@ -122,7 +139,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
         currentIndex: currentIndex,
         onTap: (index) {
           setState(() {
-            currentIndex = index;  // Update the selected index
+            currentIndex = index; // Update the selected index
           });
         },
       ),
@@ -157,7 +174,7 @@ class _ServiceScreenState extends State<ServiceScreen> {
               imagePath,
               width: 100,
               height: 100,
-              color: Colors.black, 
+              color: Colors.black,
             ),
             const SizedBox(height: 12),
             Text(
