@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../widgets/category_item.dart';
 import '../../widgets/custom_bottom_navigation_bar.dart';
-import '../screens/Bookagent_screen.dart'; 
+import '../screens/Bookagent_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -96,22 +96,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  const CategoryItem(
-                    imagePath: 'assets/images/sandtimer.png',
-                    title: 'Service',
-                  ),
-                  const CategoryItem(
-                    imagePath: 'assets/images/idea.png',
-                    title: 'Pickup',
-                  ),
-                  const CategoryItem(
-                    imagePath: 'assets/images/reservation.png',
-                    title: 'Reservation',
-                  ),
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    CategoryItem(
+                      imagePath: 'assets/images/sandtimer.png',
+                      title: 'Service',
+                    ),
+                    SizedBox(width: 16), // Spasi antar item
+                    CategoryItem(
+                      imagePath: 'assets/images/idea.png',
+                      title: 'Pickup',
+                    ),
+                    SizedBox(width: 16),
+                    CategoryItem(
+                      imagePath: 'assets/images/reservation.png',
+                      title: 'Reservation',
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 40),
               const Text(

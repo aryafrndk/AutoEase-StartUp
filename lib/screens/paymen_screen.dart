@@ -14,6 +14,7 @@ class _PaymentScreen extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, // Tambahkan ini
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -55,7 +56,6 @@ class _PaymentScreen extends State<PaymentScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
-            // Pickup Address Title
             const Text(
               'Pickup Address',
               style: TextStyle(
@@ -74,7 +74,6 @@ class _PaymentScreen extends State<PaymentScreen> {
               ),
               child: Row(
                 children: [
-                  // Location Icon
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: const BoxDecoration(
@@ -88,7 +87,6 @@ class _PaymentScreen extends State<PaymentScreen> {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  // Address Details
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +132,6 @@ class _PaymentScreen extends State<PaymentScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            // Scan QR Title
             const Text(
               'Scan QR',
               style: TextStyle(
@@ -144,7 +141,6 @@ class _PaymentScreen extends State<PaymentScreen> {
               ),
             ),
             const SizedBox(height: 10),
-            // QR Placeholder
             Container(
               width: double.infinity,
               height: 200,
@@ -161,7 +157,6 @@ class _PaymentScreen extends State<PaymentScreen> {
               ),
             ),
             const Spacer(),
-            // Footer
             Padding(
               padding: const EdgeInsets.only(bottom: 16.0),
               child: RichText(
@@ -197,7 +192,7 @@ class _PaymentScreen extends State<PaymentScreen> {
         currentIndex: currentIndex,
         onTap: (index) {
           setState(() {
-            currentIndex = index; // Update the selected index
+            currentIndex = index;
           });
         },
       ),
