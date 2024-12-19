@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/category_item.dart';
 import '../../widgets/custom_bottom_navigation_bar.dart';
 import '../screens/Bookagent_screen.dart';
+import '../screens/tracking_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -17,7 +18,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Auto Ease'),
+        title: const Text(
+          'Auto Ease',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
         leading: Container(
           padding: const EdgeInsets.all(8.0),
           margin: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -41,8 +47,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               borderRadius: BorderRadius.circular(20),
             ),
             child: IconButton(
-              icon:
-                  const Icon(Icons.notifications_outlined, color: Colors.black),
+              icon: const Icon(Icons.notifications_outlined, color: Colors.black),
               onPressed: () {
                 // Action for the notification button
               },
@@ -104,12 +109,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       imagePath: 'assets/images/sandtimer.png',
                       title: 'Service',
                     ),
-                    SizedBox(width: 16), // Spasi antar item
+                    const SizedBox(width: 16), // Spasi antar item
                     CategoryItem(
                       imagePath: 'assets/images/idea.png',
                       title: 'Pickup',
                     ),
-                    SizedBox(width: 16),
+                    const SizedBox(width: 16),
                     CategoryItem(
                       imagePath: 'assets/images/reservation.png',
                       title: 'Reservation',
@@ -142,6 +147,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     child: Container(
                       width: 180,
                       height: 240,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 6,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -172,36 +188,58 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ),
                   ),
-                  Container(
-                    width: 180,
-                    height: 240,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            'assets/images/track.png',
-                            width: 160,
-                            height: 160,
-                            fit: BoxFit.cover,
+                  GestureDetector(
+                    onTap: () {
+                      // Navigasi ke halaman VehicleTrackingScreen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const VehicleTrackingScreen(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 180,
+                      height: 240,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 6,
+                            offset: const Offset(0, 2),
                           ),
-                        ),
-                        const SizedBox(height: 12),
-                        const Text(
-                          'Track Your Service',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.asset(
+                              'assets/images/track.png',
+                              width: 160,
+                              height: 160,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 4),
-                        const Text(
-                          '1h 12 min',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ],
+                          const SizedBox(height: 12),
+                          const Text(
+                            'Track Your Service',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 4),
+                          const Text(
+                            '1h 12 min',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
